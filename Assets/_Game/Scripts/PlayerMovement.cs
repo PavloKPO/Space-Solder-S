@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speedPlayer;
+    [SerializeField] private float _stepPlayer;
     private Animator _animator;
     
     private void Start()
@@ -13,11 +14,20 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-       float _horMovement = Input.GetAxis("Horizontal");
-       float _verMovement = Input.GetAxis("Vertical");
-        transform.position += new Vector3(_horMovement, 0, _verMovement).normalized * _speedPlayer * Time.deltaTime;       
-        
-        _animator.SetFloat("ForAndBack", _verMovement);
-        _animator.SetFloat("RightAndLeft", _horMovement);
+        MovementPlayer();
+    }
+
+    private void MovementPlayer()
+    {
+        float horMovement = Input.GetAxis("Horizontal");
+        float verMovement = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(horMovement, 0, verMovement);
+        movement = Vector3.ClampMagnitude(movement, _stepPlayer);
+
+        transform.position += movement * _speedPlayer * Time.deltaTime;
+
+        _animator.SetFloat("ForAndBack", verMovement);
+        _animator.SetFloat("RightAndLeft", horMovement);
     }
 }
