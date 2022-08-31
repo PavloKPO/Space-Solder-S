@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speedPlayer;
-    [SerializeField] private float _stepPlayer;
+    [SerializeField] private float _speedPlayer;    
     private Animator _animator;
     
     private void Start()
@@ -23,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         float verMovement = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(horMovement, 0, verMovement);
-        movement = Vector3.ClampMagnitude(movement, _stepPlayer);
+        movement = Vector3.ClampMagnitude(movement, 1.0f);
 
         transform.position += movement * _speedPlayer * Time.deltaTime;
 
