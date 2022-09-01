@@ -8,7 +8,7 @@ public class СameraСontroller : MonoBehaviour
        
     private void Update()
     {
-        Vector3 _target = new Vector3(_player.position.x, transform.position.y, _player.position.z - transform.position.z);
+        Vector3 _target = new Vector3(_player.position.x, transform.position.y,  _player.position.z - transform.position.z );
 
         Vector3 currentPosition = Vector3.Lerp(transform.position, _target, _trackingSpeed *Time.deltaTime);
         transform.position = currentPosition;
