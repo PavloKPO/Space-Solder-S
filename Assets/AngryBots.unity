@@ -40868,8 +40868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a14329fc74ea5d45b588460fb2f4c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _touchMarker: {fileID: 62543480}
-  _joystic: {fileID: 1692887204}
+  _touchMarker: {fileID: 62543479}
+  _joystic: {fileID: 1692887203}
 --- !u!1 &1707506647
 GameObject:
   m_ObjectHideFlags: 0

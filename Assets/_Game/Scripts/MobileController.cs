@@ -4,41 +4,28 @@ using UnityEngine.EventSystems;
 
 public class MobileController : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-    [SerializeField] private Image _touchMarker;
-    [SerializeField] private Image _joystic;
-    private Vector2 _inputVector;
-
-    private void Start()
+    [SerializeField] private RectTransform _touchMarker;
+    [SerializeField] private RectTransform _joystic;        
+    public void OnPointerDown(PointerEventData eventData)
     {
-        _joystic = GetComponent<Image>();
-        _touchMarker = transform.GetChild(0).GetComponent<Image>();
+        OnDrag(eventData);
     }
-
-    public virtual void OnPointerDown(PointerEventData ped)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        OnDrag(ped);
-    }
-
-    public virtual void OnPointerUp(PointerEventData ped)
+        _touchMarker.anchoredPosition = Vector2.zero;
+    }         
+    public void OnDrag(PointerEventData eventData)
     {
-        _inputVector = Vector2.zero;
-        _touchMarker.rectTransform.anchoredPosition = Vector2.zero;
-    }
-    
-        
-
-    public virtual void OnDrag(PointerEventData ped)
-    {
-        Vector2 pos;
-        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystic.rectTransform, ped.position, ped.pressEventCamera, out pos))
+        Vector2 inputVector;        
+        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystic, eventData.position, eventData.pressEventCamera, out inputVector))
         {
-            pos.x = (pos.x/_touchMarker.rectTransform.sizeDelta.x);
-            pos.y = (pos.y/_touchMarker.rectTransform.sizeDelta.y);
+            inputVector.x = (inputVector.x/_touchMarker.sizeDelta.x);
+            inputVector.y = (inputVector.y/_touchMarker.sizeDelta.y);
 
-            _inputVector = new Vector2(pos.x, pos.y);
-            _inputVector = (_inputVector.magnitude > 1.0f) ? _inputVector.normalized : _inputVector;
+            inputVector = new Vector2(inputVector.x, inputVector.y);
+            inputVector = Vector2.ClampMagnitude(inputVector, 1f);
 
-            _touchMarker.rectTransform.anchoredPosition = new Vector2(_inputVector.x * (_joystic.rectTransform.sizeDelta.x/2), _inputVector.y * (_joystic.rectTransform.sizeDelta.y/2));
+            _touchMarker.anchoredPosition = Vector2.Scale(inputVector, _joystic.sizeDelta) / 2f;
         }
     }
 }
