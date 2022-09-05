@@ -3,9 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speedMove;    
-    private Animator _animator;   
-    
-
+    private Animator _animator;      
 
     private void Start()
     {
@@ -36,8 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
         _animator.SetFloat("ForAndBack", verMovement);
         _animator.SetFloat("RightAndLeft", horMovement);
-    }
-
-    
+    }   
 
 }
