@@ -35,7 +35,7 @@ public class MobileController : MonoBehaviour, IDragHandler, IPointerUpHandler, 
             pos.x = (pos.x/_touchMarker.rectTransform.sizeDelta.x);
             pos.y = (pos.y/_touchMarker.rectTransform.sizeDelta.y);
 
-            _inputVector = new Vector2(pos.x * 2 - 1, pos.y * 2 - 1);
+            _inputVector = new Vector2(pos.x, pos.y);
             _inputVector = (_inputVector.magnitude > 1.0f) ? _inputVector.normalized : _inputVector;
 
             _touchMarker.rectTransform.anchoredPosition = new Vector2(_inputVector.x * (_joystic.rectTransform.sizeDelta.x/2), _inputVector.y * (_joystic.rectTransform.sizeDelta.y/2));
