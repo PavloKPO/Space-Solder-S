@@ -17,19 +17,15 @@ public class PlayerMovement : MonoBehaviour
         float verMovement = _mobileController.GetVertical();
         _movement = new Vector3(horMovement, 0, verMovement);
         _movement = Vector3.ClampMagnitude(_movement, 1.0f);
+        RotationPlayer();
 
         if (_movement.magnitude > _turning—ircle)
-        {                      
-            RotationPlayer();            
-
+        {              
             transform.position += _movement * _speedMove * Time.deltaTime;            
             _animator.SetBool("Move", true);          
         }
-        else
-        {
-            _animator.SetBool("Move", false);
-            RotationPlayer();
-        }
+        else        
+            _animator.SetBool("Move", false);        
     } 
     
     private void RotationPlayer()
