@@ -39663,7 +39663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75b53327689ce141ade622ce93985c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedMove: 5
+  _speedMove: 6
 --- !u!136 &1289635146
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -39674,10 +39674,26 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1, z: 0.11461371}
+--- !u!54 &1289635148
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289635143}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1 &1309713737
 GameObject:
   m_ObjectHideFlags: 0
@@ -40792,8 +40808,8 @@ GameObject:
   - component: {fileID: 1692887204}
   - component: {fileID: 1692887206}
   m_Layer: 5
-  m_Name: Joystic
-  m_TagString: Untagged
+  m_Name: Joystick
+  m_TagString: Joystick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40869,7 +40885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _touchMarker: {fileID: 62543479}
-  _joystic: {fileID: 1692887203}
+  _joystick: {fileID: 1692887203}
 --- !u!1 &1707506647
 GameObject:
   m_ObjectHideFlags: 0

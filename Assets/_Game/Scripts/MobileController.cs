@@ -1,31 +1,43 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class MobileController : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
     [SerializeField] private RectTransform _touchMarker;
-    [SerializeField] private RectTransform _joystic;        
+    [SerializeField] private RectTransform _joystick;
+    private Vector2 _inputVector;
     public void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
     }
     public void OnPointerUp(PointerEventData eventData)
     {
+        _inputVector = Vector2.zero;
         _touchMarker.anchoredPosition = Vector2.zero;
-    }         
+    }
     public void OnDrag(PointerEventData eventData)
     {
-        Vector2 inputVector;        
-        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystic, eventData.position, eventData.pressEventCamera, out inputVector))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystick, eventData.position, eventData.pressEventCamera, out _inputVector))
         {
-            inputVector.x = (inputVector.x/_touchMarker.sizeDelta.x);
-            inputVector.y = (inputVector.y/_touchMarker.sizeDelta.y);
-
-            inputVector = new Vector2(inputVector.x, inputVector.y);
-            inputVector = Vector2.ClampMagnitude(inputVector, 1f);
-
-            _touchMarker.anchoredPosition = Vector2.Scale(inputVector, _joystic.sizeDelta) / 2f;
+            _inputVector /=_touchMarker.sizeDelta;
+            _inputVector = Vector2.ClampMagnitude(_inputVector, 1f);
+            _touchMarker.anchoredPosition = Vector2.Scale(_inputVector, _joystick.sizeDelta) / 2f;
         }
     }
+    public float Horizontal()
+    {
+        if (_inputVector.x != 0)
+            return _inputVector.x;
+        else
+            return Input.GetAxis("Horizontal");
+    }
+
+    public float Vertical()
+    {
+        if (_inputVector.y != 0)
+            return _inputVector.y;
+        else
+            return Input.GetAxis("Vertical");
+    }
 }
+    
