@@ -39664,6 +39664,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedMove: 6
+  _animator: {fileID: 1289635147}
+  _mobileController: {fileID: 1692887206}
+  "_turning\u0421ircle": 0.25
 --- !u!136 &1289635146
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -39678,6 +39681,11 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0.11461371}
+--- !u!95 &1289635147 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: df1f47a0a2effe74488d5da197295a19, type: 3}
+  m_PrefabInstance: {fileID: 1289635142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &1289635148
 Rigidbody:
   m_ObjectHideFlags: 0

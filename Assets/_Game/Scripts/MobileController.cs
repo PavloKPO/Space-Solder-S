@@ -24,7 +24,7 @@ public class MobileController : MonoBehaviour, IDragHandler, IPointerUpHandler, 
             _touchMarker.anchoredPosition = Vector2.Scale(_inputVector, _joystick.sizeDelta) / 2f;
         }
     }
-    public float Horizontal()
+    public float GetHorizontal()
     {
         if (_inputVector.x != 0)
             return _inputVector.x;
@@ -32,7 +32,7 @@ public class MobileController : MonoBehaviour, IDragHandler, IPointerUpHandler, 
             return Input.GetAxis("Horizontal");
     }
 
-    public float Vertical()
+    public float GetVertical()
     {
         if (_inputVector.y != 0)
             return _inputVector.y;
