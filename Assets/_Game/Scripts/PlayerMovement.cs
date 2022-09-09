@@ -13,11 +13,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MovementPlayer()
     {        
-        float horMovement = _mobileController.GetHorizontal();
-        float verMovement = _mobileController.GetVertical();
+        float horMovement = _mobileController.GetHorizontalInput();
+        float verMovement = _mobileController.GetVerticalInput();
+
         _movement = new Vector3(horMovement, 0, verMovement);
         _movement = Vector3.ClampMagnitude(_movement, 1.0f);
-        RotationPlayer();
+
+        Vector3 dir = Vector3.RotateTowards(transform.forward, _movement, _speedMove, 0.0f);
+        transform.rotation = Quaternion.LookRotation(dir);
 
         if (_movement.magnitude > _turning—ircle)
         {              
@@ -28,10 +31,6 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("Move", false);        
     } 
     
-    private void RotationPlayer()
-    {
-        Vector3 dir = Vector3.RotateTowards(transform.forward, _movement, _speedMove, 0.0f);
-        transform.rotation = Quaternion.LookRotation(dir);
-    }
+    
 
 }
