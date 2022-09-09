@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speedMove;    
     [SerializeField] private Animator _animator;
     [SerializeField] private MobileController _mobileController;
-    [SerializeField] private float _turningÑircle;    
+    [SerializeField] private float _turningCircle;    
         
     private void Update()
     {
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 dir = Vector3.RotateTowards(transform.forward, movement, _speedMove, 0.0f);
         transform.rotation = Quaternion.LookRotation(dir);
 
-        if (movement.magnitude > _turningÑircle)
+        if (movement.magnitude > _turningCircle)
         {              
             transform.position += movement * _speedMove * Time.deltaTime;            
             _animator.SetBool("Move", true);          
