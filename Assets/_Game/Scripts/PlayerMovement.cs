@@ -4,8 +4,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speedMove;    
     [SerializeField] private Animator _animator;
     [SerializeField] private MobileController _mobileController;
-    [SerializeField] private float _turning—ircle;
-    private Vector3 _movement;
+    [SerializeField] private float _turning—ircle;    
         
     private void Update()
     {
@@ -16,15 +15,15 @@ public class PlayerMovement : MonoBehaviour
         float horMovement = _mobileController.GetHorizontalInput();
         float verMovement = _mobileController.GetVerticalInput();
 
-        _movement = new Vector3(horMovement, 0, verMovement);
-        _movement = Vector3.ClampMagnitude(_movement, 1.0f);
+        Vector3 movement = new Vector3(horMovement, 0, verMovement);
+        movement = Vector3.ClampMagnitude(movement, 1.0f);
 
-        Vector3 dir = Vector3.RotateTowards(transform.forward, _movement, _speedMove, 0.0f);
+        Vector3 dir = Vector3.RotateTowards(transform.forward, movement, _speedMove, 0.0f);
         transform.rotation = Quaternion.LookRotation(dir);
 
-        if (_movement.magnitude > _turning—ircle)
+        if (movement.magnitude > _turning—ircle)
         {              
-            transform.position += _movement * _speedMove * Time.deltaTime;            
+            transform.position += movement * _speedMove * Time.deltaTime;            
             _animator.SetBool("Move", true);          
         }
         else        
