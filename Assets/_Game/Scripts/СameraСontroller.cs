@@ -3,14 +3,21 @@ using UnityEngine;
 public class СameraСontroller : MonoBehaviour
 {
     [SerializeField] private Transform _player;
-    [SerializeField] private float _trackingSpeed;                 
-      
-    private void Update()
-    {
-        Vector3 _target = new Vector3(_player.position.x, transform.position.y,  _player.position.z - transform.position.z );
+    [SerializeField] private Transform _camera;
+    private Vector3 _offSet;
 
-        Vector3 currentPosition = Vector3.Lerp(transform.position, _target, _trackingSpeed *Time.deltaTime);
-        transform.position = currentPosition;      
-    }  
-          
+    private void Start()
+    {
+        _offSet = _camera.position - _player.position;
+    }
+    private void LateUpdate()
+    {
+        Vector3 desiredPosition = _player.position + _offSet;
+        _camera.position = desiredPosition;
+    }
+
+
+    
+       
+    
 }
