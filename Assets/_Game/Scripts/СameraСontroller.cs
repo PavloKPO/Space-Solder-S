@@ -14,10 +14,6 @@ public class СameraСontroller : MonoBehaviour
     {
         Vector3 desiredPosition = _player.position + _offSet;
         _camera.position = desiredPosition;
-    }
-
-
-    
-       
+    }  
     
 }

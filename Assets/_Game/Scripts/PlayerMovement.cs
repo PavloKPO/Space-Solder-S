@@ -4,8 +4,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speedMove;    
     [SerializeField] private Animator _animator;
     [SerializeField] private MobileController _mobileController;
-    [SerializeField] private float _turningCircle;    
-        
+    [SerializeField] private float _turningCircle;   
+      
     private void Update()
     {
          MovementPlayer();        
