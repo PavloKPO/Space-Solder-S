@@ -5,10 +5,8 @@ public class GunController : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private float _rangeAttack;
     [SerializeField] private Transform _pointOfAttack;
-    [SerializeField] private float _fireRate;
     [SerializeField] private ParticleSystem _muzzleFlash;
-    [SerializeField] private GameObject _impactEffect;
-    
+    [SerializeField] private GameObject _impactEffect;    
     private void Update()
     {
         if (Input.GetButtonDown("Fire2"))                   
@@ -17,8 +15,7 @@ public class GunController : MonoBehaviour
     public void Shoot()
     {   
         _muzzleFlash.Play();
-        RaycastHit hit;
-             
+        RaycastHit hit;             
         if (Physics.Raycast(_pointOfAttack.position, _pointOfAttack.forward, out hit, _rangeAttack))
         {
             EnemyController target = hit.transform.GetComponent<EnemyController>();
@@ -29,8 +26,6 @@ public class GunController : MonoBehaviour
 
             GameObject impactGO = Instantiate(_impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactGO, 0.5f);
-        }
-                
-    }
-    
+        }                
+    }    
 }

@@ -8,12 +8,12 @@ public class DoorController : MonoBehaviour
     private bool _isOpen = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.GetComponent<PlayerMovement>() != null)
             _isOpen = true;
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.GetComponent<PlayerMovement>() != null)
             _isOpen = false;
     }
     private void Update()
@@ -23,7 +23,7 @@ public class DoorController : MonoBehaviour
     }
     private void OpenDoor()
     {
-        if (_isOpen == true)
+        if (_isOpen)
         {
             _door.Translate(_doorSpeed * Time.deltaTime, 0, 0);
             if (_door.position.x > _doorEndPosition.x)
@@ -32,7 +32,7 @@ public class DoorController : MonoBehaviour
     }
     private void CloseDoor()
     {
-        if (_isOpen == false && _door.position != _doorStartPosition)
+        if (!_isOpen  && _door.position != _doorStartPosition)
         {
             _door.Translate(-_doorSpeed * Time.deltaTime, 0, 0);
             if (_door.position.x < _doorStartPosition.x)
